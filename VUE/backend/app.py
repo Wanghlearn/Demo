@@ -1,9 +1,9 @@
-from flask import Flask, render_template, request, Response, redirect, jsonify,json
+from flask import Flask, render_template, request, Response, redirect, jsonify, json, session
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 import os
 from utils import get_rusult
-
+from hashlib import md5
 
 app = Flask(__name__,
             static_folder='../frontend/dist',
@@ -15,6 +15,18 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(app.root_pat
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # 关闭对模型修改的监控
 db = SQLAlchemy(app)
 
+
+def password_to_md5(s):
+    new_md5 = md5()
+    new_md5.update(s.encode(encoding='utf-8'))
+    return new_md5.hexdigest()
+
+
+# 数据库建表
+class user(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    username = db.Column(db.String(80), primary_key=True)
+    password = db.Column(db.String(120), unique=False)
 
 
 # ----cluster info----
@@ -107,6 +119,35 @@ class tx(db.Model):
     value = db.Column(db.Integer)
 
 
+@app.route('/register', methods=['GET'])
+def Register():
+    name = request.args.get('name')
+    password = request.args.get('password')
+    userobject = user.query.filter_by(username=name).all()
+    if userobject:
+        return '用户名已存在'
+    else:
+        userobject1 = user(username=name, password=password_to_md5(password))
+        db.session.add(userobject1)
+        db.session.commit()
+        return "1"
+
+
+@app.route('/login', methods=['GET'])
+def login():
+    if request.method == 'GET':
+        username = request.args.get('name')
+        password = request.args.get('password')
+        userobject = user.query.filter_by(username=username, password=password_to_md5(password)).first()
+        if userobject:
+            return "1"
+        else:
+            userobject = user.query.filter_by(username=username).first()
+            if userobject:
+                return "密码错误"
+            return "用户不存在，请注册"
+
+
 @app.route('/nodeinfo1', methods=['GET'])
 def nodeinfo():
     c_name = request.args.get('cluster_name')
@@ -152,10 +193,6 @@ def nodeinfo2():
 @app.route('/similar', methods=['GET'])
 def getRes():
     return json.dumps(get_rusult.getAns())
-
-
-
-
 
 
 @app.route('/')
