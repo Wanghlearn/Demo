@@ -33,13 +33,13 @@ npm install element-plus
 #### HTTP请求方式
 > GET
 #### 请求参数
-> |参数|必选|类型|说明|
-|:-----  |:-------|:-----|-----                               |
-|cluster_name    |ture    |string|请求的集群名                          |
+|参数|必选|类型|说明|
+|----- |-------|-----|-----|
+|cluster_name|ture|string|请求的集群名|
 |feature    |true    |string   |请求的特征名|
 #### 返回字段
-> |返回字段|字段类型|说明                              |
-|:-----   |:------|:-----------------------------   |
+|返回字段|字段类型|说明|
+|-----|------|-----------------------------   |
 |values  |json   |[时间戳，特征值]的二元数组列表   |
 #### 接口示例
 > 地址：[http://localhost:5000/clusterinfo？cluster_name='cc-cc408-hya'&feature='active_shards']
@@ -60,14 +60,14 @@ npm install element-plus
 #### HTTP请求方式
 > GET
 #### 请求参数
-> |参数|必选|类型|说明|
-|:-----  |:-------|:-----|-----                               |
+|参数|必选|类型|说明|
+|-----  |-------|-----|-----                               |
 |cluster_name    |ture    |string|请求的集群名                          |
 |node_name    |true    |string   |请求的节点名|
 |feature    |true    |string   |请求的特征名|
 #### 返回字段
-> |返回字段|字段类型|说明                              |
-|:-----   |:------|:-----------------------------   |
+|返回字段|字段类型|说明                              |
+|----   |------|-----------------------------   |
 |values  |json   |[时间戳，特征值]的二元数组列表   |
 #### 接口示例
 > 地址：[http://localhost:5000/clusterinfo1？cluster_name='cc-cc408-hya'&node_name=data-node-04&feature='process_cpu_percent']
@@ -88,17 +88,18 @@ npm install element-plus
 #### HTTP请求方式
 > GET
 #### 请求参数
-> |参数|必选|类型|说明|
-|:-----  |:-------|:-----|-----                               |
+|参数|必选|类型|说明|
+|-----  |-------|-----|-----                               |
 |cluster_name    |ture    |string|请求的集群名                          |
 |node_name    |true    |string   |请求的节点名|
 |mount_name    |true    |string   |请求的磁盘名|
 #### 返回字段
-> |返回字段|字段类型|说明 
-> |:-----   |:------|:-----------------------------   |
+|返回字段|字段类型|说明 
+|-----   |------|-----------------------------   |
 |values  |json   |[时间戳，特征值]的二元数组列表   | 
 #### 接口示例
-> 地址：[http://localhost:5000/clusterinfo1？cluster_name='cc-cc408-hya'&node_name='data-node-04'&mount_name='/srv/data01 (/dev/sdb)']
+> 地址：
+[http://localhost:5000/clusterinfo1？cluster_name='cc-cc408-hya'&node_name='data-node-04'&mount_name='/srv/data01 (/dev/sdb)']
 ``` javascript
 {
     {"timestamp": 1681291847,
