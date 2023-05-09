@@ -7,6 +7,8 @@ python 3.x
 pip install flask  
 pip install Flask-Cors  
 pip install flask_sqlalchemy
+pip install scipy
+pip install scikit-learn
 ### 前端：   
 npm install axios   
 npm install echarts   
