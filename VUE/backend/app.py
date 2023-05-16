@@ -6,8 +6,8 @@ from utils import get_rusult
 from hashlib import md5
 
 app = Flask(__name__,
-            static_folder='../frontend/dist',
-            template_folder="../frontend/dist",
+            static_folder='../client/dist',
+            template_folder="../client/dist",
             static_url_path="")
 # enable CORS
 CORS(app, resources={r'/*': {'origins': '*'}})
@@ -15,7 +15,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(app.root_pat
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # 关闭对模型修改的监控
 db = SQLAlchemy(app)
 
-
+#用户密码加密函数
 def password_to_md5(s):
     new_md5 = md5()
     new_md5.update(s.encode(encoding='utf-8'))
@@ -56,7 +56,7 @@ def serialzed(schema):
 
 
 @app.route('/clusterinfo', methods=['GET'])
-def test():
+def get_cluster_feature():
     name = request.args.get('cluster_name')
     feature = request.args.get('feature')
     values = []
