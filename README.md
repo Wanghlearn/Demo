@@ -14,6 +14,9 @@ npm install axios
 npm install echarts   
 npm install element-plus 
 
+## 运行方式：
+进入后端目录 python app.py
+进入前端目录 yarn run dev
 
 ## 使用说明：   
 目前主要有四个页面:登陆页面，注册页面，信息展示页面和相似度对比分析页面；   
@@ -24,7 +27,6 @@ npm install element-plus
 滚动鼠标滚轮，折线图可以进行放大和缩小，折线超出视野范围可以用鼠标拉一下。
 信息展示页面还有一个刷新按钮，需要点击按钮的最上方，进行数据刷新。   
 相似度对比分析页面：展示了相似度对比分析的结果以及相似度排名前五的五组数据的折线图，每个折线图中有两条折线，红色的折线表示0.csv的异常数据。   
-
 
 ## 接口说明
 ### clusterinfo
