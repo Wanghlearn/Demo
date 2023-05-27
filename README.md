@@ -5,10 +5,10 @@ python 3.x
 ## 部署环境：    
 ### 后端：  
 pip install flask  
-pip install Flask-Cors  
-pip install flask_sqlalchemy
-pip install scipy
-pip install scikit-learn
+pip install Flask-Cors   
+pip install flask_sqlalchemy  
+pip install scipy  
+pip install scikit-learn  
 ### 前端：   
 npm install axios   
 npm install echarts   
@@ -16,7 +16,7 @@ npm install element-plus
 
 ## 运行方式：
 进入后端目录 python app.py  
-进入前端目录 yarn run dev
+进入前端目录 yarn run serve
 
 ## 使用说明：   
 目前主要有四个页面:登陆页面，注册页面，信息展示页面和相似度对比分析页面；   
